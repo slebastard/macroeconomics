@@ -42,8 +42,6 @@ def draw_eps(N: int):
         output_dtype=tf.float32,
     )
 
-def firm(K:Tensor, z:Tensor):
-    prod = z*tf.pow(K, α)*tf.pow(L, 1-α)
-    r = z*α*tf.pow(K, α-1)*tf.pow(L, 1-α)
-    w = z*(1-α)*tf.pow(K, α)*tf.pow(L, -α)
-    return prod, r, w
+@tf.function
+def FB(a:Tensor, b:Tensor):
+    return a + b - tf.sqrt(tf.pow(a,2) + tf.pow(b,2))
